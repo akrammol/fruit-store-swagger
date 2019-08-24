@@ -35,9 +35,9 @@ class SwaggerConfig {
                 "MARKET",
                 "1.0",
                 "Term of service",
-                new Contact(" Dorsa Support Team ", "http://dorsa.trade", "support@dorsa.trade"),
+                new Contact(" FRUIT Store Support Team ", "http://fruitstore.com", "support@fruitstore.com"),
                 "",
-                "http://sit.kian.trade", new ArrayList());
+                "http://fruitstore.com", new ArrayList());
 
 
         return apiInfo;
