@@ -1,11 +1,10 @@
+/*
 package com.cybercom.fruitstore.web.rest;
 
-import com.cybercom.fruitstore.FruitStoreApp;
 
 import com.cybercom.fruitstore.domain.Fruit;
 import com.cybercom.fruitstore.repository.FruitRepository;
 import com.cybercom.fruitstore.service.FruitService;
-import com.cybercom.fruitstore.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,19 +24,19 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 
-import static com.cybercom.fruitstore.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+*/
 /**
  * Test class for the FruitResource REST controller.
  *
  * @see FruitResource
- */
+ *//*
+
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = FruitStoreApp.class)
 public class FruitResourceIntTest {
 
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
@@ -82,12 +81,14 @@ public class FruitResourceIntTest {
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
-    /**
+    */
+/**
      * Create an entity for this test.
      *
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
-     */
+     *//*
+
     public static Fruit createEntity(EntityManager em) {
         Fruit fruit = new Fruit()
             .name(DEFAULT_NAME)
@@ -262,3 +263,4 @@ public class FruitResourceIntTest {
         assertThat(fruit1).isNotEqualTo(fruit2);
     }
 }
+*/

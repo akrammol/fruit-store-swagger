@@ -28,7 +28,6 @@ public class Fruit implements Serializable {
     @Column(name = "price")
     private Long price;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -75,7 +74,6 @@ public class Fruit implements Serializable {
     public void setPrice(Long price) {
         this.price = price;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

@@ -1,11 +1,10 @@
 package com.cybercom.fruitstore.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import com.cybercom.fruitstore.domain.Fruit;
 import com.cybercom.fruitstore.service.FruitService;
+import com.cybercom.fruitstore.util.HeaderUtil;
+import com.cybercom.fruitstore.util.ResponseUtil;
 import com.cybercom.fruitstore.web.rest.errors.BadRequestAlertException;
-import com.cybercom.fruitstore.web.rest.util.HeaderUtil;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -24,10 +22,9 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class FruitResource {
 
-    private final Logger log = LoggerFactory.getLogger(FruitResource.class);
-
     private static final String ENTITY_NAME = "fruit";
-
+    private static final String applicationName = "fruit-store";
+    private final Logger log = LoggerFactory.getLogger(FruitResource.class);
     private final FruitService fruitService;
 
     public FruitResource(FruitService fruitService) {
@@ -42,16 +39,15 @@ public class FruitResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/fruits")
-    @Timed
-    public ResponseEntity<Fruit> createFruit(@RequestBody Fruit fruit) throws URISyntaxException {
+    public ResponseEntity<Fruit> createFruit(@RequestBody Fruit fruit) throws URISyntaxException, BadRequestAlertException {
         log.debug("REST request to save Fruit : {}", fruit);
         if (fruit.getId() != null) {
             throw new BadRequestAlertException("A new fruit cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Fruit result = fruitService.save(fruit);
         return ResponseEntity.created(new URI("/api/fruits/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+                .body(result);
     }
 
     /**
@@ -64,16 +60,15 @@ public class FruitResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/fruits")
-    @Timed
-    public ResponseEntity<Fruit> updateFruit(@RequestBody Fruit fruit) throws URISyntaxException {
+    public ResponseEntity<Fruit> updateFruit(@RequestBody Fruit fruit) throws BadRequestAlertException {
         log.debug("REST request to update Fruit : {}", fruit);
         if (fruit.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         Fruit result = fruitService.save(fruit);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, fruit.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+                .body(result);
     }
 
     /**
@@ -82,7 +77,6 @@ public class FruitResource {
      * @return the ResponseEntity with status 200 (OK) and the list of fruits in body
      */
     @GetMapping("/fruits")
-    @Timed
     public List<Fruit> getAllFruits() {
         log.debug("REST request to get all Fruits");
         return fruitService.findAll();
@@ -95,7 +89,6 @@ public class FruitResource {
      * @return the ResponseEntity with status 200 (OK) and with body the fruit, or with status 404 (Not Found)
      */
     @GetMapping("/fruits/{id}")
-    @Timed
     public ResponseEntity<Fruit> getFruit(@PathVariable Long id) {
         log.debug("REST request to get Fruit : {}", id);
         Optional<Fruit> fruit = fruitService.findOne(id);
@@ -109,10 +102,10 @@ public class FruitResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/fruits/{id}")
-    @Timed
     public ResponseEntity<Void> deleteFruit(@PathVariable Long id) {
         log.debug("REST request to delete Fruit : {}", id);
         fruitService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, null))
+                .build();
     }
 }
