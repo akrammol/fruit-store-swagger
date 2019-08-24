@@ -2,8 +2,8 @@ package com.cybercom.fruitstore.web.rest;
 
 import com.cybercom.fruitstore.domain.Fruit;
 import com.cybercom.fruitstore.service.FruitService;
-import com.cybercom.fruitstore.util.HeaderUtil;
-import com.cybercom.fruitstore.util.ResponseUtil;
+import com.cybercom.fruitstore.web.rest.util.HeaderUtil;
+import com.cybercom.fruitstore.web.rest.util.ResponseUtil;
 import com.cybercom.fruitstore.web.rest.errors.BadRequestAlertException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package com.cybercom.fruitstore.util;
+package com.cybercom.fruitstore.web.rest.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

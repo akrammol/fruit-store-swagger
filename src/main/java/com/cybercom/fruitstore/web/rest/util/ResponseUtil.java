@@ -3,10 +3,10 @@
 // (powered by Fernflower decompiler)
 //
 
-package com.cybercom.fruitstore.util;
+package com.cybercom.fruitstore.web.rest.util;
 
 import java.util.Optional;
-import java.util.function.Function;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
